@@ -3,7 +3,6 @@ import { card } from '../../typography'
 
 export const Container = styled.div`
     display: flex;
-    width: 100vw;
     justify-content: center;
 `
 

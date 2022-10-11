@@ -18,6 +18,7 @@ export const Wrapper = styled.div`
     box-shadow: 0px 8px 8px 8px rgba(118,118,118,0.8);
     gap: 2rem;
     padding: 1rem 0;
+    width: 100%;
 `
 
 const inputStyle = `

@@ -38,7 +38,7 @@ const EmployeeProvider: FC<ProviderProps> = ({ children }): JSX.Element => {
             officeSearchTerm,
             setOfficeSearchTerm
         }}>
-            <div style={{ backgroundColor: 'lightgrey' }}>
+            <div style={{ backgroundColor: 'lightgrey', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
                 {children}
             </div>
         </EmployeeContext.Provider>
