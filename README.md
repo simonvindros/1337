@@ -12,6 +12,9 @@ The HTML is semantic and the CSS modern; the website works on pretty much all re
 
 And the last feature i've focused on is hosting the webpage on a free public URL: surge.
 
+Note:
+I have taken an active choice to not render out the images of the employees and / or the links to their private medias. First of all there is a privacy concern that I've taken into account and also there is a performance aspect: next time, I would probably build this project in NextJS to server-side render the pictures for a better user experience.
+
 ## Available Scripts
 
 In the project directory, you can run:
