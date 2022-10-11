@@ -1,4 +1,3 @@
-import './App.css';
 import React, { FC } from 'react'
 import EmployeeCards from './components/EmployeeCards/EmployeeCards';
 import Filter from './components/Filter/Filter';

@@ -19,7 +19,7 @@ export type Employee = {
 export type Employees = Employee[]
 
 export type Context = {
-    loading: Boolean
+    loading: boolean
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
     employees: Employees
     setEmployees: React.Dispatch<React.SetStateAction<Employees>>

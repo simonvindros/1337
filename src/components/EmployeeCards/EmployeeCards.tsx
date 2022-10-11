@@ -1,39 +1,55 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useEmployeeContext } from '../../utils/ContextProvider'
+import portraitplaceholder from '../../assets/images/portraitplaceholder.png'
+import github from '../../assets/icons/github.png'
+import linkedin from '../../assets/icons/linkedin.png'
+import twitter from '../../assets/icons/twitter.png'
+import * as S from './styled'
 
 const EmployeeCards: FC = () => {
     const EmployeeContext = useEmployeeContext()
     const { loading, employees, nameSearchTerm, officeSearchTerm } = EmployeeContext
 
-    const filteredArr = employees.filter(employee => employee.name.toUpperCase().includes(nameSearchTerm.toUpperCase()))
+    const filterArr = () => {
+        if (officeSearchTerm === 'All') {
+            return employees.filter(employee => employee.name.toUpperCase().includes(nameSearchTerm.toUpperCase()))
+        } else {
+            return employees.filter(employee => employee.name.toUpperCase().includes(nameSearchTerm.toUpperCase()) && employee.office === officeSearchTerm)
+        }
+    }
 
-    // const officeFilter = employees.filter(employee => employee.office.toUpperCase().includes(officeSearchTerm.toUpperCase()))
+    useEffect(() => {
+        filterArr()
+    }, [nameSearchTerm, officeSearchTerm])
 
     return (
-        <div style={{ width: '100vw', height: '100vh' }}>
-            {!loading ?
-                filteredArr
-                    .map(employee =>
-                    (
-                        <div key={employee.email}
-                            style={{
-                                display: 'flex',
-                                margin: '20px'
-                            }}>
-                            <p>
-                                {employee.name} -----
-                            </p>
-                            <p>
-                                {employee.email} ------
-                            </p>
-                            <p>
-                                {employee.office}
-                            </p>
-                        </div>)
-                    ) : (
-                    <p>LOADING...</p>
-                )}
-        </div>
+        <S.Container>
+            <S.Wrapper loading={loading}>
+                {!loading ?
+                    filterArr()
+                        .map(employee =>
+                        (
+                            <S.Card key={employee.email}>
+                                <S.Image src={portraitplaceholder} />
+                                <S.InformationAndLinks>
+                                    <S.Information>
+                                        <S.EmployeeName>{employee.name}</S.EmployeeName>
+                                        <S.EmployeeOffice>Office: {employee.office}</S.EmployeeOffice>
+                                    </S.Information>
+                                    <S.Links>
+                                        <S.Icon src={github} />
+                                        <S.Icon src={linkedin} />
+                                        <S.Icon src={twitter} />
+                                    </S.Links>
+                                </S.InformationAndLinks>
+                            </S.Card>)
+                        ) : (
+                        <S.Loading>
+                            LOADING...
+                        </S.Loading>
+                    )}
+            </S.Wrapper>
+        </S.Container>
     )
 }
 

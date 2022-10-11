@@ -10,7 +10,7 @@ const EmployeeProvider: FC<ProviderProps> = ({ children }): JSX.Element => {
     const [loading, setLoading] = useState<boolean>(true)
     const [employees, setEmployees] = useState<Employees>([])
     const [nameSearchTerm, setNameSearchTerm] = useState('')
-    const [officeSearchTerm, setOfficeSearchTerm] = useState('')
+    const [officeSearchTerm, setOfficeSearchTerm] = useState('All')
 
     if (employees.length === 0) {
         axios.get('https://api.1337co.de/v3/employees', {
@@ -38,7 +38,9 @@ const EmployeeProvider: FC<ProviderProps> = ({ children }): JSX.Element => {
             officeSearchTerm,
             setOfficeSearchTerm
         }}>
-            {children}
+            <div style={{ backgroundColor: 'lightgrey' }}>
+                {children}
+            </div>
         </EmployeeContext.Provider>
     )
 }
